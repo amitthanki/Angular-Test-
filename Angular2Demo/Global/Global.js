@@ -6,5 +6,7 @@ var Global = (function () {
     return Global;
 }());
 Global.BASE_URL = 'http://localhost:7267/api/customer/post';
+Global.GetBASE_URL = 'http://localhost:7267/api/customer';
+Global.GetDataByID = "http://localhost:7267/api/GetCustomerID/";
 exports.Global = Global;
 //# sourceMappingURL=Global.js.map

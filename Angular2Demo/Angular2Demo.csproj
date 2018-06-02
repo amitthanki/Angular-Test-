@@ -46,10 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -69,6 +77,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="App_Data\Database1.mdf" />
+    <Content Include="App_Data\Database1_log.ldf">
+      <DependentUpon>Database1.mdf</DependentUpon>
+    </Content>
     <Content Include="SystemJS.config.js" />
     <Content Include="tsconfig.json" />
     <None Include="Web.Debug.config">
@@ -80,24 +92,36 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="UI\Customer.html" />
+    <Content Include="UI\Edit.html" />
+    <Content Include="UI\Header.html" />
     <Content Include="UI\Index.html" />
+    <Content Include="UI\Login.html" />
+    <Content Include="UI\MasterPage.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Component\AuthService.ts" />
     <TypeScriptCompile Include="Component\CustomerComponent.ts" />
+    <TypeScriptCompile Include="Component\EditComponent.ts" />
+    <TypeScriptCompile Include="Component\HeaderComponent.ts" />
+    <TypeScriptCompile Include="Component\LoginComponent.ts" />
+    <TypeScriptCompile Include="Component\MasterPageComponent.ts" />
     <TypeScriptCompile Include="Global\Global.ts" />
     <TypeScriptCompile Include="Model\Country.ts" />
     <TypeScriptCompile Include="Model\Customer.ts" />
+    <TypeScriptCompile Include="Model\LoginModel.ts" />
     <TypeScriptCompile Include="Module\MainModule.ts" />
+    <TypeScriptCompile Include="Module\Routing.ts" />
     <TypeScriptCompile Include="Services\CountryStateService.ts" />
     <TypeScriptCompile Include="Services\UserService.ts" />
     <TypeScriptCompile Include="Startup\Startup.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

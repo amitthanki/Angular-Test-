@@ -14,19 +14,21 @@
         <div class="form-group">
             <label>Name</label>
             <input type="text" class="form-control" formControlName="name" />
-            <div *ngIf="userForm.controls['name'].hasError('required')" class="alert alert-danger">
+            <!--<div *ngIf="userForm.controls['name'].hasError('required')" class="alert alert-danger">
                 Please enter name
-            </div>
-            <div *ngIf="userForm.controls['name'].hasError('minlength')" class="alert alert-danger">
+            </div>-->
+            <!--<control-messages [control]="userForm.controls.name" [label]="'name'"></control-messages>-->          
+            <!--<div *ngIf="userForm.controls['name'].hasError('minlength')" class="alert alert-danger">
                 Minimum length is 4
             </div>
             <div *ngIf="userForm.controls['name'].hasError('maxlength')" class="alert alert-danger">
                 Maximum length is 10
-            </div>
+            </div>-->
         </div>
         <div class="form-group">
             <label>Email</label>
             <input type="text" class="form-control" formControlName="email" />
+            <!--<control-messages [control]="userForm.controls.email" [label]="'email'"></control-messages>--> 
         </div>
        
             <div class="form-group">
@@ -43,18 +45,40 @@
                 <!--<div *ngIf="userForm.controls['address'].controls['postalcode'].hasError('pattern')" class="alert alert-danger">
                       5 digit required
                 </div>-->
-            </div>
-       
-        <!--<div class="form-group">
-            <label>Country</label>
-            <select class="form-control" formControlName="SelectedCountry" [(ngModel)] ="SelectedCountry.CountryID">
-        <option value= 0 >--Select Country--</option>
-        <option value= 1> Country</option>
-        <option *ngFor="let country of countries" value = "{{country.CountryId}}">{{country.CountryName}}</option>  
-      </select> <br />
-            
-
-        </div>-->
-        <button type="button" (click)="onSubmit(userForm)" [disabled]="!userForm.valid" class="btn btn-primary" value="ee">Save</button>
+            </div>       
+        <div class="form-group">
+        <label>Country</label>
+        <select class="form-control" formControlName="SelectedCountry" [(ngModel)] ="SelectedCountry">
+        <option value= 0 >--Select Country--</option>       
+        <option *ngFor="let country of countries" value = {{country.CountryID}}>{{country.CountryName}}</option>  
+      </select> <br />   
+        </div>
+        <button type="button" (click)="onSubmit(userForm)" class="btn btn-primary" value="ee">Save</button>
+        <button type="button" (click)="onReset(userForm)" class="btn btn-primary" value="ee">Reset</button>
     </form>
+    <table-component [customer] ="customer" (EditCustomer)="editUser($event)"></table-component>   
+    <!--<div class='panel panel-primary'>
+        <div class='panel-body'>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of customer">
+                            <td>{{user.Id}}</td>
+                            <td>{{user.Name}}</td>
+                            <td>
+                                <button title="Edit" class="btn btn-primary" (click)="editUser(user.Id)">Edit</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>-->
 </div>

@@ -1,0 +1,18 @@
+﻿<div mat-dialog-container>
+    <mat-toolbar *ngIf="style==1" color="primary" class="mat-elevation-z2">
+        <mat-card-header>{{title}}</mat-card-header>
+    </mat-toolbar>
+    <div class="message">
+        <p>
+            {{message}}
+        </p>
+    </div>
+    <div class="info" *ngIf="information!==''">
+        <p>{{information}}</p>
+    </div>
+          <div style="padding: 5px;float:right">
+              <div *ngIf="button==0">
+                  <button mat-button color="accent" tabindex="-1">Ok</button>
+              </div>
+          </div>
+</div>

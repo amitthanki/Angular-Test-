@@ -13,6 +13,19 @@ var CustomerComponent_1 = require("../Component/CustomerComponent");
 var CountryStateService_1 = require("../Services/CountryStateService");
 var UserService_1 = require("../Services/UserService");
 var http_1 = require("@angular/http");
+var Routing_1 = require("../Module/Routing");
+var common_1 = require("@angular/common");
+var MasterPageComponent_1 = require("../Component/MasterPageComponent");
+var EditComponent_1 = require("../Component/EditComponent");
+var forms_2 = require("@angular/forms");
+var LoginComponent_1 = require("../Component/LoginComponent");
+var ValidationService_1 = require("../Services/ValidationService");
+var ControlMessage_1 = require("../Services/ControlMessage");
+var TableComponent_1 = require("../Component/TableComponent");
+var SpinnerServices_1 = require("../Services/SpinnerServices");
+var HeaderComponent_1 = require("../Component/HeaderComponent");
+var AuthService_1 = require("../Component/AuthService");
+//import { MatDialogModule, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 var MainModule = (function () {
     function MainModule() {
     }
@@ -20,10 +33,11 @@ var MainModule = (function () {
 }());
 MainModule = __decorate([
     core_1.NgModule({
-        providers: [CountryStateService_1.CountryStateService, UserService_1.UserService],
-        imports: [platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, http_1.HttpModule],
-        declarations: [CustomerComponent_1.CustomerComponent],
-        bootstrap: [CustomerComponent_1.CustomerComponent]
+        providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }, CountryStateService_1.CountryStateService, UserService_1.UserService, ValidationService_1.ValidationService, SpinnerServices_1.LoaderService, AuthService_1.AuthService],
+        // providers: [CountryStateService,UserService],
+        imports: [Routing_1.AppRoutingModule, platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, http_1.HttpModule, forms_2.FormsModule],
+        declarations: [CustomerComponent_1.CustomerComponent, MasterPageComponent_1.MasterPageComponent, EditComponent_1.EditComponent, LoginComponent_1.LoginComponent, ControlMessage_1.ControlMessages, TableComponent_1.TableComponent, HeaderComponent_1.HeaderComponent],
+        bootstrap: [MasterPageComponent_1.MasterPageComponent]
     })
 ], MainModule);
 exports.MainModule = MainModule;

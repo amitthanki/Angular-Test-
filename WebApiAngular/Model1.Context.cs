@@ -13,10 +13,10 @@ namespace WebApiAngular
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Database1Entities : DbContext
+    public partial class Database1Entities2 : DbContext
     {
-        public Database1Entities()
-            : base("name=Database1Entities")
+        public Database1Entities2()
+            : base("name=Database1Entities2")
         {
         }
     
@@ -26,20 +26,5 @@ namespace WebApiAngular
         }
     
         public virtual DbSet<Customer> Customers { get; set; }
-    }
-
-    public class Customer
-    {
-        public string Name { get; set; }
-
-        public string Email { get; set; }
-
-        public string Street { get; set; }
-
-        public string City { get; set; }
-
-        public string PostalCode { get; set; }
-
-        public string Country { get; set; }
     }
 }

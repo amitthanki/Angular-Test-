@@ -1,0 +1,17 @@
+﻿import { Injectable,ErrorHandler } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+@Injectable()
+export class AuthService {
+    private loggedIn = new BehaviorSubject<boolean>(false);
+
+    get isLoggedIn() {
+        return this.loggedIn.asObservable(); // {2}
+    }
+
+    login() {
+            this.loggedIn.next(true);
+           // this.router.navigate(['/']);
+     }
+}

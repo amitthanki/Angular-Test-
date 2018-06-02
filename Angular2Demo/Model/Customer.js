@@ -2,9 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var Customer = (function () {
     function Customer() {
-        this.CustomerId = "";
-        this.CustomerName = "";
-        this.CustomerAmount = 0;
+        this.Name = "";
+        this.Email = "";
+        this.Street = "";
+        this.City = "";
+        this.PostalCode = "";
     }
     return Customer;
 }());
