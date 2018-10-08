@@ -11,15 +11,12 @@ namespace WebApiAngular
 {
     using System;
     using System.Collections.Generic;
-    [Newtonsoft.Json.JsonObject(Title = "MyCar")]
-    public partial class Customer
+    
+    public partial class Table
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Street { get; set; }
-        [Newtonsoft.Json.JsonProperty(PropertyName = "MyCar1")]
-        public string City { get; set; }
-        public string PostalCode { get; set; }
+        public Nullable<long> LookupValue { get; set; }
+        public string LookupName { get; set; }
+        public Nullable<int> LookupType { get; set; }
     }
 }

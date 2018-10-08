@@ -119,9 +119,19 @@ var ValidationService = ValidationService_1 = (function () {
             //form.controls[name].
         }
     };
-    ValidationService.validateForm = function (form) {
+    //static validateForm(form) {
+    //    for (var name in form.controls) {
+    //        //if(!(notCheck && notCheck.indexOf(name) !== -1)){
+    //        form.controls[name].updateValueAndValidity();
+    //        form.controls[name].markAsTouched();
+    //        //}
+    //    }
+    //    return form.valid;
+    //}
+    ValidationService.validateForm = function (form, notCheck) {
+        if (notCheck === void 0) { notCheck = []; }
+        debugger;
         for (var name in form.controls) {
-            debugger;
             //if(!(notCheck && notCheck.indexOf(name) !== -1)){
             form.controls[name].updateValueAndValidity();
             form.controls[name].markAsTouched();

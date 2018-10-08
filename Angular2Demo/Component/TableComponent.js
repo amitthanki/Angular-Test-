@@ -11,9 +11,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var Customer_1 = require("../Model/Customer");
+//import { TableModule } from 'primeng/table';
+//import { GridOptions } from "ag-grid";
 var TableComponent = (function () {
     function TableComponent() {
+        //    cols: any[];
+        //    private gridOptions: GridOptions;
+        //    constructor() {
+        //        this.gridOptions = <GridOptions>{};
+        //        this.gridOptions.columnDefs = [
+        //            {
+        //                headerName: "ID",
+        //                field: "id",
+        //                width: 100
+        //            },
+        //            {
+        //                headerName: "Value",
+        //                field: "value",
+        //                width: 100
+        //            },
         this.EditCustomer = new core_1.EventEmitter();
+        this.p = 1;
+        //}
     }
     TableComponent.prototype.editUser = function (id) {
         // this.customerComponent.editUser(id);

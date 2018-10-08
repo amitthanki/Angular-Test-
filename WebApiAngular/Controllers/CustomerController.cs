@@ -17,6 +17,7 @@ namespace WebApiAngular.Controllers
     public class CustomerController : BaseApiController
     {
         protected Database1Entities2 obj = new Database1Entities2();
+        public ResponseCls _response = new ResponseCls();
         [Route("api/customer/post")]
         [HttpPost]
         public HttpResponseMessage Post([FromBody]Customer obj1)
@@ -25,7 +26,7 @@ namespace WebApiAngular.Controllers
 
             obj.Customers.Add(obj1);
             obj.SaveChanges();
-            return ToJson(obj1);
+            return ToJson(1);
 
 
         }
@@ -42,6 +43,12 @@ namespace WebApiAngular.Controllers
             
             return ToJson(obj.Customers.Where(x=>x.Id == id).FirstOrDefault());
         }
-
+        [HttpGet]
+        [Route("api/GetLookupValue")]
+        public HttpResponseMessage GetLookupValue()
+        {
+            return ToJson(obj.Tables.ToList());
+           // return ToJson(obj.Tables.Where(x => x.LookupType == id).GroupBy(x => x.LookupType).ToList());
+        }
     }
 }

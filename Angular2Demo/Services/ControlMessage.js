@@ -46,6 +46,7 @@ ControlMessages = __decorate([
         selector: 'control-messages',
         template: "<div class=\"text-danger\" *ngIf=\"errorMessage !== null\">{{errorMessage}}</div>"
     }),
+    core_1.Injectable(),
     __metadata("design:paramtypes", [])
 ], ControlMessages);
 exports.ControlMessages = ControlMessages;

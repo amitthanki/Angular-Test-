@@ -11,6 +11,9 @@ var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 var AuthService = (function () {
     function AuthService() {
         this.loggedIn = new BehaviorSubject_1.BehaviorSubject(false);
+        this.isUserLogged = false;
+        this.loginurl = '/Login';
+        this.setRedirecturl = '/';
     }
     Object.defineProperty(AuthService.prototype, "isLoggedIn", {
         get: function () {
@@ -21,7 +24,17 @@ var AuthService = (function () {
     });
     AuthService.prototype.login = function () {
         this.loggedIn.next(true);
+        this.isUserLogged = true;
         // this.router.navigate(['/']);
+    };
+    AuthService.prototype.isUserLoggedIn = function () {
+        return this.isUserLogged;
+    };
+    AuthService.prototype.getLoginurl = function () {
+        return this.loginurl;
+    };
+    AuthService.prototype.getRedirecturl = function () {
+        return this.setRedirecturl;
     };
     return AuthService;
 }());

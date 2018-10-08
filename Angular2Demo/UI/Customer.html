@@ -49,14 +49,18 @@
         <div class="form-group">
         <label>Country</label>
         <select class="form-control" formControlName="SelectedCountry" [(ngModel)] ="SelectedCountry">
-        <option value= 0 >--Select Country--</option>       
+        <option value= '' >--Select Country--</option>       
         <option *ngFor="let country of countries" value = {{country.CountryID}}>{{country.CountryName}}</option>  
-      </select> <br />   
+      </select> 
+            <br />  
+            <control-messages [control]="userForm.controls.SelectedCountry" [label]="'wewe'"></control-messages>          
         </div>
         <button type="button" (click)="onSubmit(userForm)" class="btn btn-primary" value="ee">Save</button>
         <button type="button" (click)="onReset(userForm)" class="btn btn-primary" value="ee">Reset</button>
     </form>
-    <table-component [customer] ="customer" (EditCustomer)="editUser($event)"></table-component>   
+    <table-component [customer] ="customer" (EditCustomer)="editUser($event)"></table-component>
+    <my-pagination></my-pagination>
+    <!--<table-component></table-component>-->
     <!--<div class='panel panel-primary'>
         <div class='panel-body'>
             <div class="table-responsive">

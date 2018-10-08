@@ -11,11 +11,13 @@ var CustomerComponent_1 = require("../Component/CustomerComponent");
 var EditComponent_1 = require("../Component/EditComponent");
 var LoginComponent_1 = require("../Component/LoginComponent");
 var core_1 = require("@angular/core");
+var AuthGuardService_1 = require("../Component/AuthGuardService");
 var appRoutes = [
     { path: 'UI/Index.html', redirectTo: 'Login', pathMatch: 'full' },
     { path: 'Login', component: LoginComponent_1.LoginComponent },
-    { path: 'Edit/:id', component: EditComponent_1.EditComponent },
-    { path: 'home', component: CustomerComponent_1.CustomerComponent }
+    //{ path: 'Edit/:id', component: EditComponent },
+    { path: 'Edit', component: EditComponent_1.EditComponent, canActivate: [AuthGuardService_1.AuthGuardService] },
+    { path: 'home', component: CustomerComponent_1.CustomerComponent, canActivate: [AuthGuardService_1.AuthGuardService] }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

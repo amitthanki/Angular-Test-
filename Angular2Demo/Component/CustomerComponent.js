@@ -21,15 +21,20 @@ require("rxjs/add/operator/catch");
 var router_1 = require("@angular/router");
 var TableComponent_1 = require("../Component/TableComponent");
 var SpinnerServices_1 = require("../Services/SpinnerServices");
+//import { MessageBox, MessageBoxButton, MessageBoxStyle } from '../Component/MessageBox';
+//import { MatDialog, MAT_DIALOG_DATA } from "@angular/material";
+var AuthService_1 = require("../Component/AuthService");
 var ValidationService_1 = require("../Services/ValidationService");
+var ControlMessage_1 = require("../Services/ControlMessage");
 var CustomerComponent = (function () {
-    function CustomerComponent(_formBuilder, _service, _userService, _router, loaderService, validationService) {
+    function CustomerComponent(_formBuilder, _service, _userService, _router, loaderService, validationService, authservice) {
         this._formBuilder = _formBuilder;
         this._service = _service;
         this._userService = _userService;
         this._router = _router;
         this.loaderService = loaderService;
         this.validationService = validationService;
+        this.authservice = authservice;
         this.serviceObj = _service;
         this.countries = this.serviceObj.getCountries();
         this.LoadCustomer();
@@ -44,7 +49,7 @@ var CustomerComponent = (function () {
             street: [],
             city: [],
             postalcode: [null, forms_1.Validators.pattern('^[1-9][0-9]{4}$')],
-            SelectedCountry: 0
+            SelectedCountry: ['', forms_1.Validators.required]
         });
     };
     CustomerComponent.prototype.LoadCustomer = function () {
@@ -66,7 +71,12 @@ var CustomerComponent = (function () {
      });*/
     CustomerComponent.prototype.onSubmit = function (formData) {
         var _this = this;
-        ValidationService_1.ValidationService.validateForm(this.userForm);
+        //ValidationService.validateForm(this.userForm);         
+        // const controls = this.userForm;
+        // this.ControlMessages.control();
+        var serializer = new router_1.DefaultUrlSerializer();
+        debugger;
+        //  let a = serializer.serialize(this.userForm);
         this._userService.PostData(Global_1.Global.BASE_URL, formData._value).subscribe(function (data) {
             // alert("Success");
             if (data == 1) {
@@ -114,7 +124,7 @@ var CustomerComponent = (function () {
     //         }
     //         );
     CustomerComponent.prototype.editUser = function (id) {
-        this._router.navigate(['/Edit', id]);
+        this._router.navigate(['/Edit'], { queryParams: { Id: id, 'price-range': 'not-cheap' } });
     };
     return CustomerComponent;
 }());
@@ -122,12 +132,109 @@ __decorate([
     core_1.ViewChild(TableComponent_1.TableComponent),
     __metadata("design:type", TableComponent_1.TableComponent)
 ], CustomerComponent.prototype, "TableComponent", void 0);
+__decorate([
+    core_1.ViewChild(ControlMessage_1.ControlMessages),
+    __metadata("design:type", ControlMessage_1.ControlMessages)
+], CustomerComponent.prototype, "ControlMessages", void 0);
 CustomerComponent = __decorate([
     core_1.Component({
-        templateUrl: "../UI/Customer.html",
+        templateUrl: "../UI/Customer.html?v=" + new Date().getTime(),
         styles: ["\n        input.ng-invalid{border-left:5px solid red;}\n        input.ng-valid{border-left:5px solid green;}\n        "]
     }),
-    __metadata("design:paramtypes", [forms_1.FormBuilder, CountryStateService_1.CountryStateService, UserService_1.UserService, router_1.Router, SpinnerServices_1.LoaderService, ValidationService_1.ValidationService])
+    __metadata("design:paramtypes", [forms_1.FormBuilder, CountryStateService_1.CountryStateService, UserService_1.UserService, router_1.Router, SpinnerServices_1.LoaderService, ValidationService_1.ValidationService, AuthService_1.AuthService])
 ], CustomerComponent);
 exports.CustomerComponent = CustomerComponent;
+//// Final Submit 
+//FinalSubmit() {           
+//    this.Mainerrors = [];
+//    const controls = this.teamForm;
+//    for (const field in controls.controls) {
+//        const a = this.teamForm.get(field);
+//        this.TeamFormError[field] = '';
+//        if (!a.valid) {
+//            const message = this.ValidationMessageForTeam[field];
+//            for (const key in a.errors) {
+//                this.TeamFormError[field] += message[key];
+//                this.Mainerrors.push(this.TeamFormError[field]);
+//            }
+//        }
+//    }
+//    if (this.team.employees.length == 0) {
+//        const message = this.ValidationMessageForTeam['EmpDetails'];
+//        this.Mainerrors.push(message['required']);
+//    }
+//    if (this.errors.length == 0) {
+//        let i = JSON.stringify(this.team);
+//        console.log(i);
+//    }
+//}
+//onReset() {
+//    this.team.employees = [];
+//    this.team.TeamManagerName = "";
+//    this.team.TeamName = "";
+//    this.Mainerrors = [];
+//}
+//// Search On Change
+//onChange() {
+//    this.SearchTeamAndEmp(1);
+//}
+////Country Change Event
+//CountryDropdown(CountryID: number) {           
+//    if (CountryID == 3) {
+//        this.IshideShow = true;
+//        this.teamForm.get('EmpDetails').get("otherCountry").setValidators(Validators.required);
+//    }
+//    else {
+//        this.IshideShow = false;
+//        this.teamForm.get('EmpDetails').get("otherCountry").clearValidators();
+//    }
+//    this.teamForm.get('EmpDetails').get("otherCountry").updateValueAndValidity();
+//}
+///// search team and Employee Details
+//SearchTeamAndEmp(id: number) {         
+//    this._userService.get(Global.TeamDetails).subscribe(team => {
+//        this.team = team.data;
+//        sessionStorage.setItem("team", team.data);
+//    });
+//}
+///// Validation Message for Employees
+//EmpFormError = {
+//    'empId': '',
+//    'empName': ''
+//    //'country': '',
+//    //'otherCountry':''
+//};
+//validationMessageforEmp = {
+//    'empId': {
+//        'required': 'Id is required.',
+//    },
+//    'empName': {
+//        'required': 'Name is required.',
+//        'minlength': 'Name should be 4 Characters.'
+//    },
+//    //'country': {
+//    //    'required': 'Country is required.',
+//    //},
+//    //'otherCountry': {
+//    //    'required': 'Other Country Name is required.',
+//    //},
+//}
+//// Validation Message for Team 
+//TeamFormError = {
+//    'teamName': '',
+//    'teamManager': '',
+//    'EmpDetails': '',
+//};
+//ValidationMessageForTeam = {
+//    'teamName': {
+//        'required': 'Team Name is required.',
+//    },
+//    'teamManager': {
+//        'required': 'Team Manager Name is required.',
+//    },
+//    'EmpDetails': {
+//        'required': 'At least one Employee Details is required.',
+//    },
+//}
+//} 
 //# sourceMappingURL=CustomerComponent.js.map

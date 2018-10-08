@@ -26,5 +26,6 @@ namespace WebApiAngular
         }
     
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Table> Tables { get; set; }
     }
 }

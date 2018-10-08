@@ -6,14 +6,23 @@
     <script src="../../node_modules/zone.js/dist/zone.js"></script>
     <script src="../../node_modules/reflect-metadata/Reflect.js"></script>
     <script src="../../node_modules/systemjs/dist/system.js"></script>
-    <script src="../SystemJS.config.js"></script>
+    <script src="../SystemJS.config.js"></script>    
     <!--<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>-->
-    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />    
+    <!--<link href="../../node_modules/primeng/resources/themes/omega/theme.css" rel="stylesheet" />
+    <link href="../../node_modules/primeng/resources/primeng.min.css" rel="stylesheet" />
+    <link href="../../node_modules/primeicons/primeicons.css" rel="stylesheet" />-->
+    <!--<script src="../../node_modules/primeui/primeui-ng-all.min.js"></script>-->
+    <!--<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">-->
+    <!--<script src="../../node_modules/ngx-pagination/dist/ngx-pagination.umd.js"></script>-->
 </head>
 <base href="/">
-<body>
-
+<body>    
+    
     <script>
+    var systemJsMap = { "ag-grid": "https:\/\/unpkg.com\/ag-grid@18.0.1\/dist\/ag-grid.js", "ag-grid\/main": "https:\/\/unpkg.com\/ag-grid@18.0.1\/dist\/ag-grid.js", "ag-grid-enterprise": "https:\/\/unpkg.com\/ag-grid-enterprise@18.0.1\/", "ag-grid-react": "npm:ag-grid-react@18.0.0\/", "ag-grid-angular": "npm:ag-grid-angular@18.0.1\/", "ag-grid-vue": "npm:ag-grid-vue@18.0.0\/" };
 System.config({
 "defaultJSExtensions": true
 });

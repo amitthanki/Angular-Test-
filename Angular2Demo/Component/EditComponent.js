@@ -17,13 +17,18 @@ require("rxjs/add/operator/switchMap");
 var UserService_1 = require("../Services/UserService");
 var Global_1 = require("../Global/Global");
 var Customer_1 = require("../Model/Customer");
+var CountryStateService_1 = require("../Services/CountryStateService");
 var EditComponent = (function () {
-    function EditComponent(_formBuilder, _route, _location, _UserService) {
+    function EditComponent(_formBuilder, _service, _route, _location, _UserService) {
         this._formBuilder = _formBuilder;
+        this._service = _service;
         this._route = _route;
         this._location = _location;
         this._UserService = _UserService;
         this.customer = new Customer_1.Customer;
+        this.SelectedCountry = 1;
+        this.serviceObj = _service;
+        this.countries = this.serviceObj.getCountries();
     }
     EditComponent.prototype.ngOnInit = function () {
         this.userForm = this._formBuilder.group({
@@ -32,24 +37,36 @@ var EditComponent = (function () {
             street: [],
             city: [],
             postalcode: [null, forms_1.Validators.pattern('^[1-9][0-9]{4}$')],
-            SelectedCountry: 0
+            SelectedCountry: 1
         });
         this.getCustomerByID();
     };
     EditComponent.prototype.getCustomerByID = function () {
+        //Edit/1
+        //this._route.params.switchMap((params: Params) => this._UserService.GetDataByID(Global.GetDataByID, +params['id'])).subscribe(
+        //    customer => {
+        //        this.customer = customer, console.log(customer);
+        //    },
+        //    error => <any>error)
         var _this = this;
-        this._route.params.switchMap(function (params) { return _this._UserService.GetDataByID(Global_1.Global.GetDataByID, +params['id']); }).subscribe(function (customer) {
-            _this.customer = customer, console.log(customer);
-        }, function (error) { return error; });
+        var id = this._route.snapshot.queryParams['Id'];
+        this._UserService.GetDataByID(Global_1.Global.GetDataByID, id).subscribe(function (cust) {
+            _this.customer = cust;
+        });
+        //this._route.queryParam.fi ((params: Params) => this._UserService.GetDataByID(Global.GetDataByID, +params['id'])).subscribe(
+        //    customer => {
+        //        this.customer = customer, console.log(customer);
+        //    },
+        //    error => <any>error)
     };
     return EditComponent;
 }());
 EditComponent = __decorate([
     core_1.Component({
-        templateUrl: "../UI/Edit.html",
+        templateUrl: "../UI/Edit.html?v=" + new Date().getTime(),
         styles: ["\n        input.ng-invalid{border-left:5px solid red;}\n        input.ng-valid{border-left:5px solid green;}\n        "]
     }),
-    __metadata("design:paramtypes", [forms_1.FormBuilder, router_1.ActivatedRoute, common_1.Location, UserService_1.UserService])
+    __metadata("design:paramtypes", [forms_1.FormBuilder, CountryStateService_1.CountryStateService, router_1.ActivatedRoute, common_1.Location, UserService_1.UserService])
 ], EditComponent);
 exports.EditComponent = EditComponent;
 //# sourceMappingURL=EditComponent.js.map

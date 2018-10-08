@@ -127,18 +127,7 @@ export class ValidationService {
         }
     }
 
-    static validateForm(form) {
-        for (var name in form.controls) {
-            //if(!(notCheck && notCheck.indexOf(name) !== -1)){
-            form.controls[name].updateValueAndValidity();
-            form.controls[name].markAsTouched();
-            //}
-        }
-
-        return form.valid;
-    }
-
-    //static validateForm(form, notCheck: string[] = []) {
+    //static validateForm(form) {
     //    for (var name in form.controls) {
     //        //if(!(notCheck && notCheck.indexOf(name) !== -1)){
     //        form.controls[name].updateValueAndValidity();
@@ -148,4 +137,16 @@ export class ValidationService {
 
     //    return form.valid;
     //}
+
+    static validateForm(form, notCheck: string[] = []) {
+        debugger;
+        for (var name in form.controls) {
+            //if(!(notCheck && notCheck.indexOf(name) !== -1)){
+            form.controls[name].updateValueAndValidity();
+            form.controls[name].markAsTouched();
+            //}
+        }
+
+        return form.valid;
+    }
 }

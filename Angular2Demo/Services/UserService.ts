@@ -7,6 +7,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { Observable } from "rxjs/Observable";
 import { LoaderService } from '../Services/SpinnerServices';
+import { forkJoin } from "rxjs/Observable/forkjoin";
 
 @Injectable()
 export class UserService {
@@ -25,6 +26,12 @@ export class UserService {
 
     }       
     GetData(url: string): Observable<any> { 
+        //let character = this._http.get('https://swapi.co/api/people/1');
+        //let characterHomeworld = this._http.get('http://swapi.co/api/planets/1');
+        //debugger;
+        //forkJoin([character, characterHomeworld]).subscribe(result => {
+
+        //});
         this.loaderService.display(true);
         return this._http.get(url)       
             .map((response: Response) => <any>response.json(), this.loaderService.display(false))       

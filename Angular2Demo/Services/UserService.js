@@ -33,6 +33,11 @@ var UserService = (function () {
             .catch(this.handleError);
     };
     UserService.prototype.GetData = function (url) {
+        //let character = this._http.get('https://swapi.co/api/people/1');
+        //let characterHomeworld = this._http.get('http://swapi.co/api/planets/1');
+        //debugger;
+        //forkJoin([character, characterHomeworld]).subscribe(result => {
+        //});
         this.loaderService.display(true);
         return this._http.get(url)
             .map(function (response) { return response.json(); }, this.loaderService.display(false))

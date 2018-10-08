@@ -25,7 +25,14 @@ var TableComponent_1 = require("../Component/TableComponent");
 var SpinnerServices_1 = require("../Services/SpinnerServices");
 var HeaderComponent_1 = require("../Component/HeaderComponent");
 var AuthService_1 = require("../Component/AuthService");
+var AuthGuardService_1 = require("../Component/AuthGuardService");
 //import { MatDialogModule, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+//import { DataTableModule } from 'primeng/primeng';
+//import { TableModule } from 'primeng/table';
+//import { TableModule } from 'primeng/components/table/table';
+//import { AgGridModule } from "ag-grid-angular/main";
+//import "ag-grid-enterprise/";
+var app_paginationComponent_1 = require("../Component/app.paginationComponent");
 var MainModule = (function () {
     function MainModule() {
     }
@@ -33,10 +40,10 @@ var MainModule = (function () {
 }());
 MainModule = __decorate([
     core_1.NgModule({
-        providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }, CountryStateService_1.CountryStateService, UserService_1.UserService, ValidationService_1.ValidationService, SpinnerServices_1.LoaderService, AuthService_1.AuthService],
-        // providers: [CountryStateService,UserService],
-        imports: [Routing_1.AppRoutingModule, platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, http_1.HttpModule, forms_2.FormsModule],
-        declarations: [CustomerComponent_1.CustomerComponent, MasterPageComponent_1.MasterPageComponent, EditComponent_1.EditComponent, LoginComponent_1.LoginComponent, ControlMessage_1.ControlMessages, TableComponent_1.TableComponent, HeaderComponent_1.HeaderComponent],
+        declarations: [CustomerComponent_1.CustomerComponent, MasterPageComponent_1.MasterPageComponent, EditComponent_1.EditComponent, LoginComponent_1.LoginComponent, ControlMessage_1.ControlMessages, TableComponent_1.TableComponent, HeaderComponent_1.HeaderComponent, app_paginationComponent_1.Pagination],
+        imports: [common_1.CommonModule, Routing_1.AppRoutingModule, platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, http_1.HttpModule, forms_2.FormsModule],
+        providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }, CountryStateService_1.CountryStateService, UserService_1.UserService, ValidationService_1.ValidationService, SpinnerServices_1.LoaderService, AuthService_1.AuthService, AuthGuardService_1.AuthGuardService],
+        // providers: [CountryStateService,UserService],   
         bootstrap: [MasterPageComponent_1.MasterPageComponent]
     })
 ], MainModule);

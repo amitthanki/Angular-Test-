@@ -76,11 +76,17 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Component\app.paginationComponent.js.map" />
+    <Content Include="Component\data.js.map" />
+    <Content Include="Component\Product.js.map" />
     <None Include="packages.config" />
     <Content Include="App_Data\Database1.mdf" />
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
+    <Content Include="Component\app.paginationComponent.js" />
+    <Content Include="Component\data.js" />
+    <Content Include="Component\Product.js" />
     <Content Include="SystemJS.config.js" />
     <Content Include="tsconfig.json" />
     <None Include="Web.Debug.config">
@@ -103,12 +109,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Component\app.paginationComponent.ts" />
+    <TypeScriptCompile Include="Component\AuthGuardService.ts" />
     <TypeScriptCompile Include="Component\AuthService.ts" />
     <TypeScriptCompile Include="Component\CustomerComponent.ts" />
+    <TypeScriptCompile Include="Component\data.ts" />
     <TypeScriptCompile Include="Component\EditComponent.ts" />
     <TypeScriptCompile Include="Component\HeaderComponent.ts" />
     <TypeScriptCompile Include="Component\LoginComponent.ts" />
     <TypeScriptCompile Include="Component\MasterPageComponent.ts" />
+    <TypeScriptCompile Include="Component\Product.ts" />
     <TypeScriptCompile Include="Global\Global.ts" />
     <TypeScriptCompile Include="Model\Country.ts" />
     <TypeScriptCompile Include="Model\Customer.ts" />

@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var SpinnerServices_1 = require("../Services/SpinnerServices");
+//import { AgGridModule } from 'ag-grid-angular/main';
 var MasterPageComponent = (function () {
     function MasterPageComponent(loaderService) {
         this.loaderService = loaderService;
+        // this._compiler.clearCache();
     }
     MasterPageComponent.prototype.ngOnInit = function () {
         var _this = this;

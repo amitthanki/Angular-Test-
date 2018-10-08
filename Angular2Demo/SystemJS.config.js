@@ -23,17 +23,53 @@
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
             // other libraries
             'rxjs': 'npm:rxjs',
-            'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api'
+            'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
+            'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api',
+            'ngx-pagination': 'npm:ngx-pagination/dist/'
+            //'primeng': 'node_modules/primeng',
+            // ag libraries
+            //'ag-grid-angular': 'node_modules/ag-grid-angular',
+            //'ag-grid': 'node_modules/ag-grid',
+            //'ag-grid-enterprise': 'node_modules/ag-grid-enterprise'
         },
         // packages tells the System loader how to load when no filename and/or no extension
-        packages: {
+        packages: {           
             app: {
                 main: '../../Startup/Startup.js',
                 defaultExtension: 'js'
             },
+            'ngx-pagination': {
+                main: "ngx-pagination.js",
+                defaultExtension: "js"
+            },
+            //'ag-grid-angular': {
+            //    defaultExtension: "js"
+            //},
+            //'ag-grid-enterprise': {
+            //    defaultExtension: "js"
+            //},
+            //map: {
+            //    'ag-grid-angular': 'node_modules/ag-grid-angular',
+            //    'ag-grid': 'node_modules/ag-grid',
+            //    'ag-grid-enterprise': 'node_modules/ag-grid-enterprise'
+
+            //},  
+            //'ag-grid': {
+            //    main: 'main.js'
+            //},
             rxjs: {
                 defaultExtension: 'js'
             },
+            //'primeng': {
+            //    defaultExtension: 'js'
+            //},
+            //'node_modules/primeng': {
+            //    format: 'cjs',
+            //    defaultExtension: 'js'
+            //},
+            //map: {
+            //    "primeng": "node_modules/primeng"
+            //},
             'angular2-in-memory-web-api': {
                 main: './index.js',
                 defaultExtension: 'js'

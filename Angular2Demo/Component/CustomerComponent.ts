@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
-import { Router } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot,DefaultUrlSerializer } from '@angular/router';
 import { TableComponent } from '../Component/TableComponent';
 import { LoaderService } from '../Services/SpinnerServices';
 //import { MessageBox, MessageBoxButton, MessageBoxStyle } from '../Component/MessageBox';
@@ -21,13 +21,15 @@ import { ValidationService } from '../Services/ValidationService';
 import { ControlMessages} from '../Services/ControlMessage';
 
 @Component({
-    templateUrl: "../UI/Customer.html",
+    templateUrl: `../UI/Customer.html?v=${new Date().getTime()}`,
     styles: [`
         input.ng-invalid{border-left:5px solid red;}
         input.ng-valid{border-left:5px solid green;}
         `]
 })
 export class CustomerComponent implements OnInit {
+
+      
     //formData: any;
     //customerobj: Customer = new Customer();
     @ViewChild(TableComponent) private TableComponent: TableComponent;
@@ -47,7 +49,7 @@ export class CustomerComponent implements OnInit {
     SelectedCountry: number
     
 
-    constructor(private _formBuilder: FormBuilder, private _service: CountryStateService, private _userService: UserService, private _router: Router, private loaderService: LoaderService, private validationService: ValidationService)
+    constructor(private _formBuilder: FormBuilder, private _service: CountryStateService, private _userService: UserService, private _router: Router, private loaderService: LoaderService, private validationService: ValidationService,private authservice:AuthService)
     {   
        
         this.serviceObj = _service;
@@ -65,15 +67,15 @@ export class CustomerComponent implements OnInit {
             email: ['', Validators.compose([Validators.required, ValidationService.emailValidator])],           
                 street: [],
                 city: [],
-                postalcode: [null, Validators.pattern('^[1-9][0-9]{4}$')],     
-                SelectedCountry : 0
+                postalcode: [null, Validators.pattern('^[1-9][0-9]{4}$')],
+                SelectedCountry: ['', Validators.required]              
           
                
         })
         
     }
 
-    LoadCustomer(): void {
+    LoadCustomer(): void {        
       //  this.loaderService.display(true);
         this._userService.GetData(Global.GetBASE_URL).subscribe(
             customer => { this.customer = customer, console.log(customer);
@@ -91,11 +93,13 @@ export class CustomerComponent implements OnInit {
 
     });*/
 
-    onSubmit(formData: any) { 
-
+    onSubmit(formData: any) {         
         //ValidationService.validateForm(this.userForm);         
-        const controls = this.userForm;
-        this.ControlMessages.control(this.userForm);
+       // const controls = this.userForm;
+       // this.ControlMessages.control();
+        let serializer = new DefaultUrlSerializer();
+        debugger;
+      //  let a = serializer.serialize(this.userForm);
         this._userService.PostData(Global.BASE_URL, formData._value).subscribe(
             data => {
                // alert("Success");
@@ -160,9 +164,11 @@ export class CustomerComponent implements OnInit {
    
 
     editUser(id: number) {        
-        this._router.navigate(['/Edit',id]);
+        this._router.navigate(['/Edit'], { queryParams: { Id: id, 'price-range': 'not-cheap' } });
     }
-
+    //<a[routerLink]="['/products']"[queryParams] = "{ order: 'popular'}" >
+    //Products
+    //< /a>
     //editUser(id: number) {
     //    this._router.navigate(['/Edit', id], { queryParamsHandling: 'preserve' });
     //}
